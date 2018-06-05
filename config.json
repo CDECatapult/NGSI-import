@@ -1,0 +1,9 @@
+{
+    "marketplace_url": "http://proxy.docker:8004",
+	"proxy_url": "http://wilma.docker:7000",
+	"appplication_id": "53626045d3bd4f8c84487f77944fa586",
+	"marketplace_username": "mario",
+	"marketplace_oauth2_token": "oykjWSK32a3zQils7et9cD4FPeNpsI",
+	"brand":"My Brand",
+	"fiware_service":""
+}

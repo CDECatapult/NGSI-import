@@ -1,0 +1,94 @@
+{{ define "productValidation"}}
+{
+    "action": "create",
+    "product": {{ template "product" . }}}
+{{ end }}
+
+{{ define "product" }}
+{
+    "version": "0.1",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "bundledProductSpecification": [],
+    "productSpecCharacteristic": [{
+            "name": "Asset type",
+            "description": "Type of the data source described in this product specification",
+            "valueType": "string",
+            "configurable": false,
+            "productSpecCharacteristicValue": [{
+                "default": true,
+                "unitOfMeasure": "",
+                "value": "Orion Query",
+                "valueFrom": "",
+                "valueTo": ""
+            }]
+        },
+        {
+            "name": "Media type",
+            "description": "Media type of the data source described in this product specification",
+            "valueType": "string",
+            "configurable": false,
+            "productSpecCharacteristicValue": [{
+                "default": true,
+                "unitOfMeasure": "",
+                "value": "NGSIv2",
+                "valueFrom": "",
+                "valueTo": ""
+            }]
+        },
+        {
+            "name": "Location",
+            "description": "URL pointing to the data source described in this product specification",
+            "valueType": "string",
+            "configurable": false,
+            "productSpecCharacteristicValue": [{
+                "default": true,
+                "unitOfMeasure": "",
+                "value": "{{ .Config.Proxy }}/v2/entities?{{ .DataSource.Query }}",
+                "valueFrom": "",
+                "valueTo": ""
+            }]
+        },
+        {
+            "name": "appId",
+            "description": "Application ID of the data source described in this product specification",
+            "valueType": "string",
+            "configurable": false,
+            "productSpecCharacteristicValue": [{
+                "default": true,
+                "unitOfMeasure": "",
+                "value": "{{ .Config.App }}",
+                "valueFrom": "",
+                "valueTo": ""
+            }]
+        }
+        {{ if (ne .Config.FiwareService "") }}
+        {
+            "name": "fiware-service",
+            "description": "Application ID of the data source described in this product specification",
+            "valueType": "string",
+            "configurable": false,
+            "productSpecCharacteristicValue": [{
+                "default": true,
+                "unitOfMeasure": "",
+                "value": "{{ .Config.FiwareService }}",
+                "valueFrom": "",
+                "valueTo": ""
+            }]
+        }
+        {{ end }}
+    ],
+    "productSpecificationRelationship": [],
+    "attachment": [{
+        "type": "Picture"
+    }],
+    "relatedParty": [{
+        "id": "{{ .Config.Username }}",
+        "href": "{{ .Config.Marketplace }}/DSPartyManagement/api/partyManagement/v2/individual/{{ .Config.Username }}",
+        "role": "Owner"
+    }],
+    "name": "{{ .DataSource.Name }}",
+    "brand": "{{ .Config.Brand }}",
+    "productNumber": "1"
+}
+{{ end }}
