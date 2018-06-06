@@ -1,5 +1,5 @@
 # NGSI-import
-Script to import NGSI data sources as Data Source Specification from a list
+Script to import NGSI data sources as Data Source Specification on the IoT Data Marketplace from a list.
 
 [![License badge](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
@@ -21,10 +21,12 @@ This project is part of the EU H2020 [SynchroniCity](https://synchronicity-iot.e
 - You will find the source code of this project in GitHub [here](https://github.com/caposseleDigicat/NGSI-import)
 
 Thanks to this component you will be able to import data sources specification directly on the IoT Data Marketplace. This project reads from a file a list of NGSI pairs [Entity Type] 
-[Entity ID] and creates the respective data source specification on the marketplace. Inside the `bin` folder you will find 3 different version already compiled for `Mac OSX`, `Windows`, and `Linux`. If you wish to recompile it, just read the following section. 
+[Entity ID] and creates the respective data source specification on the marketplace. 
 
 <a name="def-build"></a>
 ## How to Build
+
+Inside the `bin` folder you will find 3 different version already compiled for `Mac OSX`, `Windows`, and `Linux`. If you wish to recompile it, just read the following instructions. 
 
 Requirements: [Go Programming Language](https://golang.org/doc/install)
 
