@@ -56,8 +56,7 @@ func main() {
 	}
 
 	fileName := os.Args[1]
-
-	fmt.Println("NGSI Import")
+	printBanner()
 
 	// Loading configuration
 	dat, err := ioutil.ReadFile("config.json")

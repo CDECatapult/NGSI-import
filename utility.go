@@ -45,3 +45,9 @@ func posString(slice []string, element string) int {
 func containsString(slice []string, element string) bool {
 	return !(posString(slice, element) == -1)
 }
+
+func printBanner() {
+	fmt.Println(" ----------------------------------")
+	fmt.Println("|           NGSI Import            |")
+	fmt.Println(" ----------------------------------")
+}
