@@ -73,6 +73,18 @@ func main() {
 	ds, err := parseData(c, dat)
 	check(err)
 
+	// Showing data sources to import
+	fmt.Println()
+	fmt.Println("The following data sources will be imported:")
+	for _, el := range ds {
+		fmt.Println(el.Name)
+	}
+	// Ask for confirmation
+	fmt.Println("WARNING: Are you sure? (yes/no)")
+	if !askForConfirmation() {
+		os.Exit(0)
+	}
+
 	// init
 	aTmpl := template.Must(template.ParseFiles("templates/asset"))
 	pTmpl := template.Must(template.ParseFiles("templates/product"))
