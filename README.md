@@ -127,7 +127,7 @@ WARNING: Are you sure? (yes/no)
 ```
 
 By typing `no` the program will terminate while by typing `yes` the tool will import the respective data sources specification on the IoT Data Marketplace.
-
+Once done, you will find the imported data source specifications under `My stock - Data source specifications` on the IoT Data Marketplace portal, with status `Active`. If you wish to create offerings with those, just set their status to `Launched`. 
 ## License
 
 The MIT License
