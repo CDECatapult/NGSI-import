@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"crypto/tls"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -88,7 +89,12 @@ func main() {
 	aTmpl := template.Must(template.ParseFiles("templates/asset"))
 	pTmpl := template.Must(template.ParseFiles("templates/product"))
 	var b bytes.Buffer
-	client := &http.Client{}
+
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := &http.Client{Transport: tr}
+	//client := &http.Client{}
 
 	for _, el := range ds {
 		pd := productData{c, el}
