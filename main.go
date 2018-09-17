@@ -147,7 +147,8 @@ func parseData(c config, d []byte) ([]dataSource, error) {
 				element.Query = s[6] + "/attrs/<attribute>"
 				element.EntityID = s[6]
 				element.Name = element.EntityID
-			} else if len(s) > 5 {
+			}
+			if len(s) > 5 {
 				element.Query = "<entity_id>/attrs/<attribute>"
 				element.Query = element.Query + "?type=" + s[2]
 				element.EntityType = s[2]
