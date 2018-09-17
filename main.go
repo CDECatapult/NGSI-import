@@ -29,6 +29,7 @@ type dataSource struct {
 	EntityID   string
 	Query      string
 	Name       string
+	idPattern  string
 }
 
 type productData struct {
@@ -157,6 +158,7 @@ func parseData(c config, d []byte) ([]dataSource, error) {
 				err = errors.New("Error parsing file")
 				break
 			}
+			element.idPattern = line
 			ds = append(ds, element)
 		}
 	}

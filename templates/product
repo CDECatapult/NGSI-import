@@ -50,6 +50,19 @@
             }]
         },
         {
+            "name": "idPattern",
+            "description": "idPattern of the data source described in this product specification",
+            "valueType": "string",
+            "configurable": false,
+            "productSpecCharacteristicValue": [{
+                "default": true,
+                "unitOfMeasure": "",
+                "value": "{{ .DataSource.idPattern }}",
+                "valueFrom": "",
+                "valueTo": ""
+            }]
+        },
+        {
             "name": "appId",
             "description": "Application ID of the data source described in this product specification",
             "valueType": "string",
