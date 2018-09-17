@@ -5,7 +5,7 @@
 	"contentType":"NGSI-LD",
 	"metadata":{
 		"application_id":"{{ .Config.App }}",
-		"idPattern":"{{ .DataSource.idPattern }}"
+		"idPattern":"{{ .DataSource.IDPattern }}"
 	}
 }
 {{ end }}

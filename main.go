@@ -29,7 +29,7 @@ type dataSource struct {
 	EntityID   string
 	Query      string
 	Name       string
-	idPattern  string
+	IDPattern  string
 }
 
 type productData struct {
@@ -80,6 +80,7 @@ func main() {
 	fmt.Println("The following data sources will be imported:")
 	for _, el := range ds {
 		fmt.Println(el.Name)
+		fmt.Println(el.IDPattern)
 	}
 	// Ask for confirmation
 	fmt.Println("WARNING: Are you sure? (yes/no)")
@@ -102,6 +103,8 @@ func main() {
 		pd := productData{c, el}
 		fmt.Println()
 		fmt.Println("Response for:", el.Name)
+
+		fmt.Println("DEBUG:", pd.DataSource.IDPattern)
 
 		b.Reset()
 		aTmpl.Execute(&b, pd)
@@ -144,13 +147,13 @@ func parseData(c config, d []byte) ([]dataSource, error) {
 			s := strings.Split(line, ":")
 			element := dataSource{}
 			//t := strings.Fields(line)
+			element.Query = "<entity_id>/attrs/<attribute>"
 			if len(s) > 6 {
 				element.Query = s[6] + "/attrs/<attribute>"
 				element.EntityID = s[6]
 				element.Name = element.EntityID
 			}
 			if len(s) > 5 {
-				element.Query = "<entity_id>/attrs/<attribute>"
 				element.Query = element.Query + "?type=" + s[2]
 				element.EntityType = s[2]
 				element.Name = element.EntityType + " : " + element.Name
@@ -158,7 +161,7 @@ func parseData(c config, d []byte) ([]dataSource, error) {
 				err = errors.New("Error parsing file")
 				break
 			}
-			element.idPattern = line
+			element.IDPattern = line
 			ds = append(ds, element)
 		}
 	}
