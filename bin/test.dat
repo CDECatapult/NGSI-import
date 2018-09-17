@@ -1,4 +1,4 @@
-type1
-type2   entity2
-type3   entity3
-type4   entity4
+urn:ngsi-ld:type1:santander:parking:onStreet
+urn:ngsi-ld:type2:santander:parking:onStreet:entity2
+urn:ngsi-ld:type2:santander:parking:onStreet:entity3
+urn:ngsi-ld:type3:santander:parking:onStreet:entity4

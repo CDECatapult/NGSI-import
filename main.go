@@ -136,23 +136,22 @@ func sendPost(c *http.Client, url string, t string, b []byte) string {
 func parseData(c config, d []byte) ([]dataSource, error) {
 	ds := []dataSource{}
 	var err error
-
+	// urn:ngsi-ld:OnStreetParking:santander:parking:onStreet:StaLuciaEast
 	lines := strings.Split(string(d), "\n")
 	for _, line := range lines {
 		if (line != "") && (line != "\n") {
+			s := strings.Split(line, ":")
 			element := dataSource{}
-			t := strings.Fields(line)
-			if len(t) > 1 && t[1] != "" {
-				element.Query = t[1] + "/attrs/<attribute>"
-				element.EntityID = t[1]
-				element.Name = element.Name + " : " + element.EntityID
-			} else {
+			//t := strings.Fields(line)
+			if len(s) > 6 {
+				element.Query = s[6] + "/attrs/<attribute>"
+				element.EntityID = s[6]
+				element.Name = element.EntityID
+			} else if len(s) > 5 {
 				element.Query = "<entity_id>/attrs/<attribute>"
-			}
-			if len(t) > 0 && t[0] != "" {
-				element.Query = element.Query + "?type=" + t[0]
-				element.EntityType = t[0]
-				element.Name = element.EntityType
+				element.Query = element.Query + "?type=" + s[2]
+				element.EntityType = s[2]
+				element.Name = element.EntityType + " : " + element.Name
 			} else {
 				err = errors.New("Error parsing file")
 				break

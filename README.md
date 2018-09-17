@@ -95,18 +95,18 @@ Before using the tool, you need to create a file containing the list of data sou
 This file should be created as list of pairs [Entity Type] [Entity ID], where [Entity Type] is mandatory while [Entity ID] is optional. When using only [Entity Type], a data source specification for all the entities of type [Entity Type] will be created. For your reference, the following is an example of the content of such file:
 
 ```
-type1
-type2   entity2
-type2   entity3
-type3   entity4
+urn:ngsi-ld:type1:santander:parking:onStreet
+urn:ngsi-ld:type2:santander:parking:onStreet:entity2
+urn:ngsi-ld:type2:santander:parking:onStreet:entity3
+urn:ngsi-ld:type3:santander:parking:onStreet:entity4
 ```
 
 This list will allow the creation of 4 different data source specifications with the following names and urls:  
 
-1. name: `type1` and url: `http://wilma.docker:7000/v2/entities/<entity_id>/attrs/<attribute>?type=type1`
-2. name: `type2 : entity2` and url: `http://wilma.docker:7000/v2/entities/entity2/attrs/<attribute>?type=type2`
-2. name: `type2 : entity3` and url: `http://wilma.docker:7000/v2/entities/entity3/attrs/<attribute>?type=type2`
-2. name: `type3 : entity4` and url: `http://wilma.docker:7000/v2/entities/entity4/attrs/<attribute>?type=type3`
+1. name: `urn:ngsi-ld:type1:santander:parking:onStreet` and url: `http://wilma.docker:7000/v2/entities/<entity_id>/attrs/<attribute>?type=type1`
+2. name: `urn:ngsi-ld:type2:santander:parking:onStreet:entity2` and url: `http://wilma.docker:7000/v2/entities/entity2/attrs/<attribute>?type=type2`
+2. name: `urn:ngsi-ld:type2:santander:parking:onStreet:entity3` and url: `http://wilma.docker:7000/v2/entities/entity3/attrs/<attribute>?type=type2`
+2. name: `urn:ngsi-ld:type3:santander:parking:onStreet:entity4` and url: `http://wilma.docker:7000/v2/entities/entity4/attrs/<attribute>?type=type3`
 
 After creating this file, you can run the tool and pass the path of the file (e.g., ./datasourcelist.dat) as argument:
 
