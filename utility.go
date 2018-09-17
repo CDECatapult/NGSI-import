@@ -48,6 +48,6 @@ func containsString(slice []string, element string) bool {
 
 func printBanner() {
 	fmt.Println(" ----------------------------------")
-	fmt.Println("|           NGSI Import            |")
+	fmt.Println("|        Historical Import         |")
 	fmt.Println(" ----------------------------------")
 }
