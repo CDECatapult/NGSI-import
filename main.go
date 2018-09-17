@@ -21,6 +21,7 @@ type config struct {
 	Token         string `json:"marketplace_oauth2_token"`
 	Brand         string `json:"brand"`
 	FiwareService string `json:"fiware_service"`
+	FiwarePath    string `json:"fiware_path"`
 }
 
 type dataSource struct {
@@ -141,18 +142,20 @@ func parseData(c config, d []byte) ([]dataSource, error) {
 		if (line != "") && (line != "\n") {
 			element := dataSource{}
 			t := strings.Fields(line)
+			if len(t) > 1 && t[1] != "" {
+				element.Query = t[1] + "/attrs/<attribute>"
+				element.EntityID = t[1]
+				element.Name = element.Name + " : " + element.EntityID
+			} else {
+				element.Query = "<entity_id>/attrs/<attribute>"
+			}
 			if len(t) > 0 && t[0] != "" {
-				element.Query = "type=" + t[0]
+				element.Query = element.Query + "?type=" + t[0]
 				element.EntityType = t[0]
 				element.Name = element.EntityType
 			} else {
 				err = errors.New("Error parsing file")
 				break
-			}
-			if len(t) > 1 && t[1] != "" {
-				element.Query = element.Query + "&id=" + t[1]
-				element.EntityID = t[1]
-				element.Name = element.Name + " : " + element.EntityID
 			}
 			ds = append(ds, element)
 		}

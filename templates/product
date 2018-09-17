@@ -18,7 +18,7 @@
             "productSpecCharacteristicValue": [{
                 "default": true,
                 "unitOfMeasure": "",
-                "value": "Orion Query",
+                "value": "HistoricalAPI Query",
                 "valueFrom": "",
                 "valueTo": ""
             }]
@@ -31,7 +31,7 @@
             "productSpecCharacteristicValue": [{
                 "default": true,
                 "unitOfMeasure": "",
-                "value": "NGSIv2",
+                "value": "NGSI-LD",
                 "valueFrom": "",
                 "valueTo": ""
             }]
@@ -44,7 +44,7 @@
             "productSpecCharacteristicValue": [{
                 "default": true,
                 "unitOfMeasure": "",
-                "value": "{{ .Config.Proxy }}/v2/entities?{{ .DataSource.Query }}",
+                "value": "{{ .Config.Proxy }}/v2/entities/{{ .DataSource.Query }}",
                 "valueFrom": "",
                 "valueTo": ""
             }]
@@ -65,13 +65,28 @@
         {{ if (ne .Config.FiwareService "") }}
         {
             "name": "fiware-service",
-            "description": "Application ID of the data source described in this product specification",
+            "description": " Fiware-Service of the data source described in this product specification",
             "valueType": "string",
             "configurable": false,
             "productSpecCharacteristicValue": [{
                 "default": true,
                 "unitOfMeasure": "",
                 "value": "{{ .Config.FiwareService }}",
+                "valueFrom": "",
+                "valueTo": ""
+            }]
+        }
+        {{ end }}
+         {{ if (ne .Config.FiwarePath "") }}
+        {
+            "name": "fiware-path",
+            "description": "Fiware-Path of the data source described in this product specification",
+            "valueType": "string",
+            "configurable": false,
+            "productSpecCharacteristicValue": [{
+                "default": true,
+                "unitOfMeasure": "",
+                "value": "{{ .Config.FiwarePath }}",
                 "valueFrom": "",
                 "valueTo": ""
             }]

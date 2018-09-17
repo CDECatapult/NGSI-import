@@ -1,8 +1,8 @@
 {{ define "asset"}}
 {
-	"resourceType":"Orion Query",
-	"content":"{{ .Config.Proxy }}/v2/entities?{{ .DataSource.Query }}",
-	"contentType":"NGSIv2",
+	"resourceType":"HistoricalAPI Query",
+	"content":"{{ .Config.Proxy }}/v2/entities/{{ .DataSource.Query }}",
+	"contentType":"NGSI-LD",
 	"metadata":{
 		"application_id":"{{ .Config.App }}"
 	}
