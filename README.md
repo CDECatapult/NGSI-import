@@ -1,5 +1,5 @@
 # NGSI-import
-Script to import NGSI data sources as Data Source Specification on the IoT Data Marketplace from a list.
+Script to import Historical data sources as Data Source Specification on the IoT Data Marketplace from a list.
 
 [![License badge](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
@@ -60,16 +60,18 @@ This tool requires a configuration file `config.json` to be filled as:
 "marketplace_username": "",
 "marketplace_oauth2_token": "",
 "brand":"",
-"fiware_service":""
+"fiware_service":"",
+"fiware_path":""
 ```
 
 - `marketplace_url`: the url of the marketplace (e.g, http://marketplace.eu:8004).
 - `proxy_url`: the url of the PEP proxy used to protect the data sources (e.g, http://wilmaPepProxy.eu:7000).
-- `application_id`: the OAuth2 client ID of the Orion Context Broker registered on the Identity Management (e.g, 53626045d3bd4f8c84487f77944fa586).
-- `marketplace_username`: the Username of the user that will be considerd the data provider for the imported data sources on the marketplace (e.g, mario). Please note that this user must have the role `data_provider` for the Orion Context Broker application on the IdM.
+- `application_id`: the OAuth2 client ID of the Historical API registered on the Identity Management (e.g, 53626045d3bd4f8c84487f77944fa586).
+- `marketplace_username`: the Username of the user that will be considerd the data provider for the imported data sources on the marketplace (e.g, mario). Please note that this user must have the role `data_provider` for the Historical API application on the IdM.
 - `marketplace_auth2_token`: the Access Token of the user above after authenticating on the IoT Data Marketplace portal (e.g, oykjWSK32a3zQils7et9cD4FPeNpsI). You can find this token under the section `Settings` on the IoT Data Marketplace portal.
 - `marketplace_url`: the brand used to fill the data source specifications in the marketplace (e.g, Manchester).
-- `fiware_service`: the Fiware-Service used on the Orion Context Broker while registering the NGSI entities (e.g, manchester). It can be empty if not used.
+- `fiware_service`: the Fiware-Service used on the Historical API while registering the NGSI entities (e.g, manchester). It can be empty if not used.
+- `fiware_path`: the Fiware-Path used on the Historical API while registering the NGSI entities (e.g, /). It can be empty if not used.
 
 As an example:
 
@@ -80,7 +82,8 @@ As an example:
 "marketplace_username": "mario",
 "marketplace_oauth2_token": "oykjWSK32a3zQils7et9cD4FPeNpsI",
 "brand":"My Brand",
-"fiware_service":""
+"fiware_service":"",
+"fiware_path":""
 ```
 
 Please note that the configuration file must be saved in the same directory of the executable.
@@ -100,10 +103,10 @@ type3   entity4
 
 This list will allow the creation of 4 different data source specifications with the following names and urls:  
 
-1. name: `type1` and url: `http://wilma.docker:7000/v2/entities?type=type1`
-2. name: `type2 : entity2` and url: `http://wilma.docker:7000/v2/entities?type=type2&id=entity2`
-2. name: `type2 : entity3` and url: `http://wilma.docker:7000/v2/entities?type=type2&id=entity3`
-2. name: `type3 : entity4` and url: `http://wilma.docker:7000/v2/entities?type=type3&id=entity4`
+1. name: `type1` and url: `http://wilma.docker:7000/v2/entities/<entity_id>/attrs/<attribute>?type=type1`
+2. name: `type2 : entity2` and url: `http://wilma.docker:7000/v2/entities/entity2/attrs/<attribute>?type=type2`
+2. name: `type2 : entity3` and url: `http://wilma.docker:7000/v2/entities/entity3/attrs/<attribute>?type=type2`
+2. name: `type3 : entity4` and url: `http://wilma.docker:7000/v2/entities/entity4/attrs/<attribute>?type=type3`
 
 After creating this file, you can run the tool and pass the path of the file (e.g., ./datasourcelist.dat) as argument:
 
@@ -115,7 +118,7 @@ You will see an output similar to:
 
 ```
  ----------------------------------
-|           NGSI Import            |
+|        Historical Import         |
  ----------------------------------
 
 The following data sources will be imported:
